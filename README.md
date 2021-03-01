@@ -5,7 +5,7 @@
   - jdk 11
 
 ## Como correr a APP:
-  1- Fazer o clone do repositório
+  ### 1- Fazer o clone do repositório
   
   ### 2- Criar o ficheiro .jar
     - Criar a classe java: javac ./Calculadora.java
