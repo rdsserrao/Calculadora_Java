@@ -12,7 +12,7 @@ pipeline {
                 }
                 stage ('Criar Imagem') {
                     steps {
-                        sh 'docker build -t "${Imagem}" .'
+                        sh 'docker build -t "$Imagem" .'
                     }   
                 } 
                 stage ('Enviar para o Nexus') {
@@ -20,8 +20,8 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh 'docker login -u "$USER" -p "$PASS" localhost:8082'
                         }
-                        sh 'docker tag "${Imagem}" localhost:8082/"${Imagem}":latest'
-                        sh 'docker push localhost:8082/"${Imagem}":latest'
+                        sh 'docker tag "$Imagem" localhost:8082/"$Imagem":latest'
+                        sh 'docker push localhost:8082/"$Imagem":latest'
                     }   
                 }
                 stage ('Criar artefato no raw') {
