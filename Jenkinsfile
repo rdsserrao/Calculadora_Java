@@ -6,8 +6,8 @@ pipeline {
             stages {
                 stage ('Criar .jar') {
                     steps {
-                        sh 'javac ./Calculadora.java'
-                        sh 'jar cfe calculator.jar Calculadora ./Calculadora.class'
+                        sh 'javac Calculadora.java'
+                        sh 'jar cfe calc.jar Calculadora Calculadora.class'
                     }   
                 }
                 stage ('Criar Imagem') {
@@ -21,8 +21,8 @@ pipeline {
                         withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
                         sh 'docker login -u $USER -p $PASS localhost:8082'
                         }
-                        sh 'docker tag $Imagem localhost:8082/$Imagem:latest'
-                        sh 'docker push localhost:8082/$Imagem:latest'
+                        sh 'docker tag $Imagem localhost:8082/$Imagem:1.0'
+                        sh 'docker push localhost:8082/$Imagem:1.0'
                     }   
                 }
                 stage ('Criar artefato no raw') {
