@@ -28,7 +28,7 @@ pipeline {
                 stage ('Criar artefato no raw') {
                     steps {
                         withCredentials([usernamePassword(credentialsId: 'nexus', passwordVariable: 'PASS', usernameVariable: 'USER')]) {
-                        sh 'curl -v --user $USER:$PASS --upload-file ./calculator.jar http://nexus:8081/repository/raw_repo/'
+                        sh 'curl -v --user $USER:$PASS --upload-file calc.jar http://nexus:8081/repository/raw_repo/'
                         }
                     }   
                 }
